@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'employee_create' %}" class="btn btn-primary">Crear Nuevo</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-1">Avatar</th>
+                        <th>Nombre del Empleado</th>
+                        <th>Compañía</th>
+                        <th>Salario</th>
+                        <th>Editar/Borrar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for employee in employees %}
+                        <tr>
+                            <td>
+                               {% if employee.person.profile_image %}
+                                    <img class="img-thumbnail" src="{{ employee.person.profile_image.url }}" alt="{{ employee.person }}"/>
+                                {% endif %}
+                            </td>
+                            <td>{{ employee.person }}</td>
+                            <td>{{ employee.company }}</td>
+                            <td>${{ employee.salary }}</td>
+
+                            <td>
+                                <a href="{% url 'employee_update' employee.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                                <a href="{% url 'employee_delete' employee.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

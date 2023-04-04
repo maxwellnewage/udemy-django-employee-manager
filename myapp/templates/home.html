@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="four col-md-4">
+        <div class="counter-box">
+            <i class="fa fa-male"></i>
+            <span class="counter">{{ person_counter }}</span>
+            <p>Personas</p>
+        </div>
+    </div>
+    <div class="four col-md-4">
+        <div class="counter-box">
+            <i class="fa fa-briefcase"></i>
+            <span class="counter">{{ employee_counter }}</span>
+            <p>Empleados</p>
+        </div>
+    </div>
+    <div class="four col-md-4">
+        <div class="counter-box">
+            <i class="fa fa-btc"></i>
+            <span class="counter">{{ company_counter }}</span>
+            <p>Compañías</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

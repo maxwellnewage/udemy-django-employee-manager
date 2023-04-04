@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'person_create' %}" class="btn btn-primary">Crear Nuevo</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-2">Nombre Completo</th>
+                        <th class="col-1">Avatar</th>
+                        <th>Pasaporte</th>
+                        <th>Email</th>
+                        <th>Porfolio</th>
+                        <th>Editar/Borrar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for person in person_list %}
+                        <tr>
+                            <td>{{ person }}</td>
+                            <td>
+                                {% if person.profile_image %}
+                                    <img class="img-thumbnail" src="{{ person.profile_image.url }}" alt="{{ person }}"/>
+                                {% endif %}
+                            </td>
+                            <td>{{ person.passport }}</td>
+                            <td>
+                                {% if person.email %}
+                                    {{ person.email }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if person.portfolio %}
+                                    <a href="{{ person.portfolio }}">[Portfolio]</a>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a href="{% url 'person_update' person.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                                <a href="{% url 'person_delete' person.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

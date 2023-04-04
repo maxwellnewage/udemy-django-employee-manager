@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="#" method="post">
+        {% csrf_token %}
+        <p>Estas seguro que deseas eliminar a "{{ entity }}"?</p>
+
+        <a href="{{ request.META.HTTP_REFERER }}">Volver</a>
+
+        <input type="submit" value="SI">
+    </form>
+{% endblock %}
